@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'CircularStd';
+  font-weight: 400;
+  font-style: normal;
+  src: local('CircularStd'), url('CircularStd-Book.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'CircularStd';
+  font-weight: 500;
+  font-style: normal;
+  src: local('CircularStd'), url('CircularStd-Medium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'CircularStd';
+  font-weight: 700;
+  font-style: normal;
+  src: local('CircularStd'), url('CircularStd-Bold.otf') format('opentype');
+}
+
+.react-calendar-datetime-picker .input-picker .input-picker--input {
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  line-height: 26px;
+  height: 26px;
+  padding: 0 8px;
+  border-radius: 4px;
+}
