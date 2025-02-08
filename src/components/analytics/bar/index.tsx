@@ -11,7 +11,7 @@ import { BarChartData } from 'src/_mock';
 
 export default function ChartBar() {
   return (
-    <Container className="bg-white p-5 shadow-lg rounded-4 w-auto">
+    <Container className="bg-white p-4 shadow-lg rounded-4" style={{width:'35%'}}>
       <div className="mb-3">
         <span className="border-bottom text-secondary">کاربر های فعال در 30 دقیقه گذشته</span>
         <h1>0</h1>
@@ -19,7 +19,7 @@ export default function ChartBar() {
       <div className="d-flex flex-column">
         <span className="text-dark-emphasis mb-2">کاربران فعال در دقیقه</span>
         <BarChart
-          w={500}
+          w="100%"
           h={100}
           dataKey="day"
           tickLine="none"
@@ -33,7 +33,7 @@ export default function ChartBar() {
       </div>
       <div className="d-flex justify-content-between pt-3">
         <Select
-          w={200}
+          w={150}
           size="xs"
           radius="md"
           variant="filled"
@@ -49,7 +49,7 @@ export default function ChartBar() {
           ]}
         />
         <Select
-          w={200}
+          w={150}
           size="xs"
           radius="md"
           variant="filled"

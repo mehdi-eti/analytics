@@ -7,7 +7,7 @@ import ListItemText from '@mui/material/ListItemText';
 // routes
 import { RouterLink } from 'src/routes/components';
 //
-import Iconify from '../../iconify';
+import Iconify from 'src/components/iconify';
 //
 import { NavItemProps, NavConfigProps } from '../types';
 import { StyledItem, StyledIcon } from './styles';
@@ -99,9 +99,7 @@ const NavItem = forwardRef<HTMLDivElement, Props>(
     );
 
     // Hidden item by role
-    if (roles && !roles.includes(`${config.currentRole}`)) {
-      return null;
-    }
+    if (roles && !roles.includes(`${config.currentRole}`)) return null;
 
     // External link
     if (externalLink)

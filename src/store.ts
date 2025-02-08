@@ -1,9 +1,9 @@
 import { atom } from 'jotai'
 import { StoreType } from 'src/types';
 
-const atomStore = atom<StoreType>({
+const atomStore = atom(<StoreType>{
   apps: [],
-  user:{},
+  user: {},
   accessUser: {},
 })
 

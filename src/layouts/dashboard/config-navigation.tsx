@@ -33,7 +33,7 @@ const ICONS = {
   invoice: icon('ic_invoice'),
   product: icon('ic_product'),
   calendar: icon('ic_calendar'),
-  disabled: icon('ic_disabled'),
+  disabledd: icon('ic_disabled'),
   external: icon('ic_external'),
   menuItem: icon('ic_menu_item'),
   ecommerce: icon('ic_ecommerce'),
@@ -49,13 +49,14 @@ export function useNavData() {
       // OVERVIEW
       // ----------------------------------------------------------------------
       {
-        subheader: 'overview v5.0.0',
+        subheader: 'آنالیز ورژن 0.1',
         items: [
           { title: 'خانه', path: paths.dashboard.root, icon: ICONS.dashboard },
           {
             title: 'گزارش',
-            path: paths.dashboard.three,
+            path: paths.dashboard.root,
             icon: ICONS.analytics,
+            disabled: true,
             children: [
               { title: 'گزارش تصویری', path: paths.dashboard.group.root },
               { title: 'گزارش آنلاین', path: paths.dashboard.group.five },

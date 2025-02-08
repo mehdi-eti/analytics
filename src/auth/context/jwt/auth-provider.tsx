@@ -1,12 +1,15 @@
 'use client';
 
+import { useAtom } from 'jotai';
 import { useEffect, useReducer, useCallback, useMemo } from 'react';
 // utils
 import axios, { API_ENDPOINTS } from 'src/utils/axios';
 //
+import atomStore from 'src/store';
+import { StoreType } from 'src/types';
+import { ActionMapType, AuthStateType, AuthUserType } from 'src/auth/types';
 import { AuthContext } from './auth-context';
 import { isValidToken, setSession } from './utils';
-import { ActionMapType, AuthStateType, AuthUserType } from '../../types';
 
 // ----------------------------------------------------------------------
 
@@ -83,6 +86,7 @@ type Props = {
 
 export function AuthProvider({ children }: Props) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [, setStore] = useAtom(atomStore);
 
   const initialize = useCallback(async () => {
     try {
@@ -94,13 +98,8 @@ export function AuthProvider({ children }: Props) {
         const response = await axios.get(API_ENDPOINTS.auth.me);
 
         const { user } = response.data;
-
-        dispatch({
-          type: Types.INITIAL,
-          payload: {
-            user,
-          },
-        });
+        setStore((prev: StoreType) => ({ ...prev, user }));
+        dispatch({ type: Types.INITIAL, payload: { user } });
       } else {
         dispatch({
           type: Types.INITIAL,
@@ -118,7 +117,7 @@ export function AuthProvider({ children }: Props) {
         },
       });
     }
-  }, []);
+  }, [setStore]);
 
   useEffect(() => {
     initialize();

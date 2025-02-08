@@ -50,7 +50,7 @@ export default function MapChart() {
               {data.map((element, i) => {
                 if (i !== 0) {
                   return (
-                    <Table.Tr key={i}>
+                    <Table.Tr key={i + Math.random()}>
                       <Table.Td className="fw-bold">{element[0]}</Table.Td>
                       <Table.Td className="text-start text-gray">{element[1]}</Table.Td>
                     </Table.Tr>

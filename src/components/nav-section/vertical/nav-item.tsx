@@ -115,9 +115,7 @@ export default function NavItem({
     );
 
   // Has child
-  if (children) {
-    return renderContent;
-  }
+  if (children) return renderContent;
 
   // Default
   return (

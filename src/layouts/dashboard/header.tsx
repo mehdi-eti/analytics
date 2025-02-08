@@ -19,6 +19,7 @@ import { NativeSelect } from '@mantine/core';
 import SvgColor from 'src/components/svg-color';
 import { useSettingsContext } from 'src/components/settings';
 //
+import { StoreType } from 'src/types';
 import { HEADER, NAV } from '../config-layout';
 import {
   Searchbar,
@@ -32,7 +33,7 @@ import {
 
 export default function Header({ onOpenNav }: { onOpenNav?: VoidFunction }) {
   const theme = useTheme();
-  const [store, setStore] = useAtom(atomStore);
+  const [store, setStore] = useAtom<StoreType>(atomStore);
 
   const settings = useSettingsContext();
 
@@ -74,8 +75,6 @@ export default function Header({ onOpenNav }: { onOpenNav?: VoidFunction }) {
         </IconButton>
       )}
 
-      <Searchbar />
-
       <Stack
         flexGrow={1}
         direction="row"
@@ -91,7 +90,6 @@ export default function Header({ onOpenNav }: { onOpenNav?: VoidFunction }) {
         />
         <NotificationsPopover />
         <ContactsPopover />
-        <SettingsButton />
         <AccountPopover />
       </Stack>
     </>

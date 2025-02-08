@@ -18,10 +18,10 @@ export default function ChartArea({ hasPopOver = true }: ChartAreaType) {
   const [label, setLabel] = useState('کاربر فعال');
 
   return (
-    <Container className="bg-white p-5 shadow-lg rounded-4">
+    <Container className="d-flex flex-column justify-content-center align-content-center bg-white p-4 shadow-lg rounded-4">
       <div className="d-flex gap-4 mb-5">
-        {['کاربر فعال', 'تعداد کلیک ها', 'نشست ها', 'بازدید ها'].map((i) => (
-          <PopOverItem setLabel={setLabel} label={i} hasPopOver={hasPopOver} />
+        {['کاربر فعال', 'تعداد کلیک ها', 'نشست ها', 'بازدید ها'].map((i, index) => (
+          <PopOverItem setLabel={setLabel} label={i} hasPopOver={hasPopOver} key={index} />
         ))}
       </div>
       <div className="d-flex justify-content-center text-center w-100 gap-2 mb-2">
@@ -40,7 +40,7 @@ export default function ChartArea({ hasPopOver = true }: ChartAreaType) {
         series={[{ name: 'تعداد', color: 'violet' }]}
       />
       <div className="my-5" />
-      <Box style={{width:`${date ? '35%' : '25%'}`}}>
+      <Box style={{width:`${date ? '45%' : '30%'}`}}>
         <DtPicker
           todayBtn
           local="fa"

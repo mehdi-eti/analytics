@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 // @mui & Mantine & MapChart
 import Box from '@mui/material/Box';
 import { Flex } from '@mantine/core';
@@ -29,7 +28,6 @@ export default function HomeView() {
 
   return (
     <Container maxWidth={settings.themeStretch ? false : 'xl'}>
-      <Typography variant="h4"> خانه </Typography>
       <Box
         sx={{
           p: 5,
@@ -48,8 +46,8 @@ export default function HomeView() {
         <div className="mt-5 d-flex flex-column">
           <h4>دسترسی های اخیر</h4>
           <Grid container spacing={1} mt={1}>
-            {['', '', '', ''].map((i) => (
-              <Grid item xs={3} key={i}>
+            {['', '', '', ''].map((i, index) => (
+              <Grid item xs={3} key={index}>
                 <div className="bg-white border shadow rounded">
                   <div className="d-flex p-3 gap-3">
                     <TbDeviceDesktopAnalytics fontSize={40} className="text-cyan-600" />

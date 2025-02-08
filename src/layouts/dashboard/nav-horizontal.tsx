@@ -24,12 +24,7 @@ function NavHorizontal() {
   const navData = useNavData();
 
   return (
-    <AppBar
-      component="nav"
-      sx={{
-        top: HEADER.H_DESKTOP_OFFSET,
-      }}
-    >
+    <AppBar component="nav" sx={{ top: HEADER.H_DESKTOP_OFFSET }}>
       <Toolbar
         sx={{
           ...bgBlur({

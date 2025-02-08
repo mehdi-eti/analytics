@@ -1,0 +1,22 @@
+export type UserType = {
+  collectionId: string;
+  collectionName: string;
+  id: string;
+  email: string;
+  emailVisibility: true;
+  verified: true;
+  name: string;
+  avatar: string;
+  last_login_at: string;
+  loccation: object;
+  first_visit: string;
+  last_visit: string;
+  country: string;
+  device: string;
+  browser: string;
+  os: string;
+  online: true;
+  phone: string;
+  created: string;
+  updated: string;
+};

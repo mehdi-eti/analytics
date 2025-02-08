@@ -31,11 +31,11 @@ function Group({ items, config }: GroupProps) {
     <>
       {items.map((list) => (
         <NavList
-          key={list.title + list.path}
-          data={list}
           depth={1}
-          hasChild={!!list.children}
+          data={list}
           config={config}
+          hasChild={!!list.children}
+          key={list.title + list.path}
         />
       ))}
     </>

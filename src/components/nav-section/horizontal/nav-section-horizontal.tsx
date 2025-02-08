@@ -23,8 +23,8 @@ function NavSectionHorizontal({ data, config, sx, ...other }: NavSectionProps) {
     >
       {data.map((group, index) => (
         <Group
-          key={group.subheader || index}
           items={group.items}
+          key={group.subheader || index}
           config={navHorizontalConfig(config)}
         />
       ))}
@@ -46,11 +46,11 @@ function Group({ items, config }: GroupProps) {
     <>
       {items.map((list) => (
         <NavList
-          key={list.title + list.path}
-          data={list}
           depth={1}
-          hasChild={!!list.children}
+          data={list}
           config={config}
+          hasChild={!!list.children}
+          key={list.title + list.path}
         />
       ))}
     </>

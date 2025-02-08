@@ -36,7 +36,7 @@ export default function ChartSession() {
           data={['گروه کانال پیش‌فرض جلسه', 'رسانه جلسه', 'کمپین جلسه', 'منبع جلسه']}
         />
       </div>
-      <div style={{ height: 310 }}>
+      <div style={{ height: 295 }}>
         <ScrollArea h={250}>
           <Table striped highlightOnHover>
             <Table.Thead>

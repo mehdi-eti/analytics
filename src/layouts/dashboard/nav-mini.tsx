@@ -28,12 +28,6 @@ export default function NavMini() {
         width: { lg: NAV.W_MINI },
       }}
     >
-      <NavToggleButton
-        sx={{
-          top: 22,
-          left: NAV.W_MINI - 12,
-        }}
-      />
 
       <Stack
         sx={{
