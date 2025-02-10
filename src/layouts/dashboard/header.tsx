@@ -67,6 +67,7 @@ export default function Header({ onOpenNav }: { onOpenNav?: VoidFunction }) {
 
   const renderContent = (
     <>
+      <Logo sx={{ mr: 2.5 }} />
       {lgUp && isNavHorizontal && <Logo sx={{ mr: 2.5 }} />}
 
       {!lgUp && (
@@ -119,7 +120,7 @@ export default function Header({ onOpenNav }: { onOpenNav?: VoidFunction }) {
             borderBottom: `dashed 1px ${theme.palette.divider}`,
           }),
           ...(isNavMini && {
-            width: `calc(100% - ${NAV.W_MINI + 1}px)`,
+            width: `100%`,
           }),
         }),
       }}

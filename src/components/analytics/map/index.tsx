@@ -14,9 +14,9 @@ export default function MapChart() {
   ];
 
   return (
-    <div className="d-flex w-100 bg-white shadow p-5 gap-3 justify-content-around">
-      <div className="d-flex flex-column gap-4">
-        <div className="d-flex justify-content-between gap-3">
+    <div className="flex w-full bg-white shadow p-5 gap-3 justify-around">
+      <div className="flex flex-col gap-4">
+        <div className="flex justify-between gap-3">
           <Select
             w={200}
             size="xs"
@@ -43,7 +43,7 @@ export default function MapChart() {
             <Table.Thead>
               <Table.Tr>
                 <Table.Th>کشور</Table.Th>
-                <Table.Th className="text-start">{user}</Table.Th>
+                <Table.Th className="text-left">{user}</Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
@@ -51,8 +51,8 @@ export default function MapChart() {
                 if (i !== 0) {
                   return (
                     <Table.Tr key={i + Math.random()}>
-                      <Table.Td className="fw-bold">{element[0]}</Table.Td>
-                      <Table.Td className="text-start text-gray">{element[1]}</Table.Td>
+                      <Table.Td className="font-bold">{element[0]}</Table.Td>
+                      <Table.Td className="text-left text-gray-500">{element[1]}</Table.Td>
                     </Table.Tr>
                   );
                 }

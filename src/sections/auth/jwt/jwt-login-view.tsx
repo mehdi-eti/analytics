@@ -127,7 +127,7 @@ export default function JwtLoginView() {
         variant="contained"
         loading={isSubmitting}
       >
-        Login
+        ورود
       </LoadingButton>
     </Stack>
   );

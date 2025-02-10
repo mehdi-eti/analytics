@@ -3,8 +3,8 @@ import { useState } from 'react';
 
 const rows = [{ event: 'تعداد بازدید', count: 5 }].map((element, i) => (
   <Table.Tr key={i}>
-    <Table.Td className="fw-bold">{element.event}</Table.Td>
-    <Table.Td className="text-start text-gray">{element.count}</Table.Td>
+    <Table.Td className="font-bold">{element.event}</Table.Td>
+    <Table.Td className="text-left text-gray-500">{element.count}</Table.Td>
   </Table.Tr>
 ));
 
@@ -13,8 +13,8 @@ export default function ChartSession() {
   const [groupSession, setGroupSession] = useState<string | null>('گروه کانال پیش‌فرض جلسه');
 
   return (
-    <div className="bg-white shadow p-5 d-flex flex-column gap-3">
-      <div className="d-flex justify-content-between">
+    <div className="bg-white shadow p-5 flex flex-col gap-3">
+      <div className="flex justify-between">
         <Select
           w={200}
           size="xs"
@@ -42,7 +42,7 @@ export default function ChartSession() {
             <Table.Thead>
               <Table.Tr>
                 <Table.Th>{groupSession}</Table.Th>
-                <Table.Th className="text-start">{session}</Table.Th>
+                <Table.Th className="text-left">{session}</Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody className="h-auto">{rows}</Table.Tbody>

@@ -9,22 +9,22 @@ const elements = [
 ];
 const rows = elements.map((element, i) => (
   <Table.Tr key={i}>
-    <Table.Td className="fw-bold">{element.event}</Table.Td>
-    <Table.Td className="text-start text-gray">{element.count}</Table.Td>
+    <Table.Td className="font-bold">{element.event}</Table.Td>
+    <Table.Td className="text-left text-gray-500">{element.count}</Table.Td>
   </Table.Tr>
 ));
 
 export default function ChartEvent() {
   return (
-    <div className="bg-white shadow p-5 d-flex flex-column gap-3">
-      <p className="fw-bold">شمارش رویداد با نام رویداد</p>
+    <div className="bg-white shadow p-5 flex flex-col gap-3">
+      <p className="font-bold">شمارش رویداد با نام رویداد</p>
       <div style={{ height: 300 }}>
         <ScrollArea h={250}>
           <Table striped highlightOnHover>
             <Table.Thead>
               <Table.Tr>
                 <Table.Th>رویداد</Table.Th>
-                <Table.Th className="text-start">تعداد</Table.Th>
+                <Table.Th className="text-left">تعداد</Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>{rows}</Table.Tbody>

@@ -57,7 +57,7 @@ export default function PopOverItem({
   const id = open ? `id-${Math.random().toString(16).slice(2)}` : undefined;
 
   return (
-    <div className="d-flex flex-column align-items-start">
+    <div className="flex flex-col align-start">
       <Button
         type="button"
         aria-describedby={id}
@@ -66,7 +66,7 @@ export default function PopOverItem({
       >
         <span className="mr-2">{state.title}</span>
       </Button>
-      <ButtonBase className="mt-2 fw-bold w-100" onClick={() => setLabel(state.title)}>
+      <ButtonBase className="mt-2 font-bold" onClick={() => setLabel(state.title)}>
         {state.value}
       </ButtonBase>
       <Popper id={id} open={open} anchorEl={anchorEl} placement="bottom-start">

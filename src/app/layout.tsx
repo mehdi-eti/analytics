@@ -9,11 +9,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
 import '@mantine/charts/styles.css';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import "bootstrap/dist/css/bootstrap.css"
-// eslint-disable-next-line import/no-extraneous-dependencies
-import 'react-calendar-datetime-picker/dist/style.css'
-
+import 'bootstrap/dist/css/bootstrap.css'
 // ----------------------------------------------------------------------
 import Script from "next/script";
 // theme

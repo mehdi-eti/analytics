@@ -6,8 +6,6 @@ import { Flex } from '@mantine/core';
 import Grid from '@mui/material/Grid';
 import { alpha } from '@mui/material/styles';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import { TbDeviceDesktopAnalytics } from 'react-icons/tb';
 // components
 import { useSettingsContext } from 'src/components/settings';
 import {
@@ -18,6 +16,7 @@ import {
   ChartEvent,
   ChartMap
 } from 'src/components/analytics';
+import { DatePickerWithRange } from 'src/components/ui';
 
 // ----------------------------------------------------------------------
 
@@ -28,6 +27,9 @@ export default function HomeView() {
 
   return (
     <Container maxWidth={settings.themeStretch ? false : 'xl'}>
+      <div className="w-full border-b p-3">
+        <DatePickerWithRange />
+      </div>
       <Box
         sx={{
           p: 5,
@@ -43,27 +45,8 @@ export default function HomeView() {
           <div className="mx-2" />
           <ChartBar />
         </Flex>
-        <div className="mt-5 d-flex flex-column">
-          <h4>دسترسی های اخیر</h4>
-          <Grid container spacing={1} mt={1}>
-            {['', '', '', ''].map((i, index) => (
-              <Grid item xs={3} key={index}>
-                <div className="bg-white border shadow rounded">
-                  <div className="d-flex p-3 gap-3">
-                    <TbDeviceDesktopAnalytics fontSize={40} className="text-cyan-600" />
-                    <div className="d-flex flex-column">
-                      <h4 className="text-info-emphasis">رویداد</h4>
-                      <span className="text-secondary fs-6">دیروز</span>
-                    </div>
-                  </div>
-                </div>
-              </Grid>
-            ))}
-          </Grid>
-        </div>
-        <div className="d-flex flex-column mt-5 gap-2">
-          <h4>پیشنهاد برای شما</h4>
-          <div className="d-flex gap-4">
+        <div className="flex flex-col mt-5 gap-2">
+          <div className="flex gap-4">
             <Grid container spacing={2}>
               <Grid item xs={4}>
                 <ChartUserActive w={500} />

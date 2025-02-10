@@ -48,11 +48,11 @@ const Dot = ({ bg }: { bg: string }) => (
 
 export default function ChartUserActive({ h = 300, w = 300 }: { h?: number; w?: number }) {
   return (
-    <div className="d-flex flex-column bg-white shadow p-5 gap-3">
-      <p className="fw-bold">فعالیت کاربر در طول زمان</p>
-      <div className="d-flex gap-5">
-        <div className="d-flex flex-column gap-2">
-          <div className="d-flex">
+    <div className="flex flex-col bg-white shadow p-5 gap-3">
+      <p className="font-bold">فعالیت کاربر در طول زمان</p>
+      <div className="flex gap-5">
+        <div className="flex flex-col gap-2">
+          <div className="flex">
             <Dot bg="rgb(26, 115, 232)" />
             <div className="">
               <p style={{ width: 'max-content' }} className="m-0">
@@ -61,7 +61,7 @@ export default function ChartUserActive({ h = 300, w = 300 }: { h?: number; w?: 
               <strong>4</strong>
             </div>
           </div>
-          <div className="d-flex">
+          <div className="flex">
             <Dot bg="rgb(71, 71, 235)" />
             <div className="">
               <p style={{ width: 'max-content' }} className="m-0">
@@ -70,7 +70,7 @@ export default function ChartUserActive({ h = 300, w = 300 }: { h?: number; w?: 
               <strong>4</strong>
             </div>
           </div>
-          <div className="d-flex">
+          <div className="flex">
             <Dot bg="rgb(114, 7, 150)" />
             <div className="">
               <p style={{ width: 'max-content' }} className="m-0">
@@ -83,8 +83,8 @@ export default function ChartUserActive({ h = 300, w = 300 }: { h?: number; w?: 
         <LineChart
           h={h}
           w={w}
-          gridAxis="none"
           dataKey="date"
+          gridAxis="none"
           curveType="linear"
           data={LineChartData}
           series={[

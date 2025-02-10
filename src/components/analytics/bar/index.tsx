@@ -13,11 +13,11 @@ export default function ChartBar() {
   return (
     <Container className="bg-white p-4 shadow-lg rounded-4" style={{width:'35%'}}>
       <div className="mb-3">
-        <span className="border-bottom text-secondary">کاربر های فعال در 30 دقیقه گذشته</span>
-        <h1>0</h1>
+        <span className="border-b text-gray-500">کاربر های فعال در 30 دقیقه گذشته</span>
+        <h1 className="text-lg font-bold">0</h1>
       </div>
-      <div className="d-flex flex-column">
-        <span className="text-dark-emphasis mb-2">کاربران فعال در دقیقه</span>
+      <div className="flex flex-col">
+        <span className="text-gray-500 mb-2">کاربران فعال در دقیقه</span>
         <BarChart
           w="100%"
           h={100}
@@ -27,11 +27,11 @@ export default function ChartBar() {
           withYAxis={false}
           withXAxis={false}
           data={BarChartData}
-          className="border-bottom"
+          className="border-b"
           series={[{ name: 'تعداد کاربر', color: 'violet.6' }]}
         />
       </div>
-      <div className="d-flex justify-content-between pt-3">
+      <div className="flex justify-between pt-3">
         <Select
           w={150}
           size="xs"
@@ -57,13 +57,13 @@ export default function ChartBar() {
           data={['کاربر فعال', 'کاربر جدید']}
         />
       </div>
-      <div className="d-flex flex-column pt-2">
+      <div className="flex flex-col pt-2">
         <ScrollArea h={250}>
           {[
             { name: 'USA', value: 1 },
             { name: 'Iran', value: 1 }
           ].map((i, index) => (
-            <div key={index} className="d-flex justify-content-between p-2 border-bottom">
+            <div key={index} className="flex justify-between p-2 border-b">
               <span>{i.name}</span>
               <span>{i.value}</span>
             </div>

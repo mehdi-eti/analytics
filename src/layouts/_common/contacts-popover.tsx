@@ -41,7 +41,7 @@ export default function ContactsPopover() {
 
       <CustomPopover open={popover.open} onClose={popover.onClose} sx={{ width: 320 }}>
         <Typography variant="h6" sx={{ p: 1.5 }}>
-          Contacts <Typography component="span">({_contacts.length})</Typography>
+          کاربر ها<Typography component="span">({_contacts.length})</Typography>
         </Typography>
 
         <Scrollbar sx={{ height: 320 }}>
