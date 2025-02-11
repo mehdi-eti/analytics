@@ -16,7 +16,7 @@ import {
   ChartEvent,
   ChartMap
 } from 'src/components/analytics';
-import { DatePickerWithRange } from 'src/components/ui';
+import { DatePickerWithRange, PieCharts } from 'src/components/ui';
 
 // ----------------------------------------------------------------------
 
@@ -59,6 +59,15 @@ export default function HomeView() {
               </Grid>
               <Grid item xs={12}>
                 <ChartMap />
+              </Grid>
+              <Grid item xs={4}>
+                <PieCharts />
+              </Grid>
+              <Grid item xs={4}>
+                <PieCharts />
+              </Grid>
+              <Grid item xs={4}>
+                <PieCharts />
               </Grid>
             </Grid>
           </div>
