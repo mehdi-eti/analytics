@@ -3,10 +3,10 @@
 import type { HTMLAttributes } from 'react';
 
 import { useState } from 'react';
-import { addDays, format } from 'date-fns';
+import { addDays } from 'date-fns';
+import { format } from "date-fns-jalali";
 import { CalendarIcon } from 'lucide-react';
 import { DateRange } from 'react-day-picker';
-import classNames from "react-day-picker/style.module.css";
 
 import { cn } from 'src/lib/utils';
 import { Button } from 'src/components/ui/button';
@@ -15,8 +15,8 @@ import { Popover, PopoverContent, PopoverTrigger } from 'src/components/ui/popov
 
 export function DatePickerWithRange({ className }: HTMLAttributes<HTMLDivElement>) {
   const [date, setDate] = useState<DateRange | undefined>({
-    from: new Date(2022, 0, 20),
-    to: addDays(new Date(2022, 0, 20), 20),
+    from: addDays(new Date(), -7),
+    to: new Date(),
   });
 
   return (
@@ -35,10 +35,10 @@ export function DatePickerWithRange({ className }: HTMLAttributes<HTMLDivElement
             {date?.from ? (
               date.to ? (
                 <>
-                  {format(date.from, 'LLL dd, y')} - {format(date.to, 'LLL dd, y')}
+                  {format(date.from, 'yyyy MMMM d')} - {format(date.to, 'yyyy MMMM d')}
                 </>
               ) : (
-                format(date.from, 'LLL dd, y')
+                format(date.from, 'yyyy MMMM d')
               )
             ) : (
               <span>Pick a date</span>

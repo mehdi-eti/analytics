@@ -1,29 +1,30 @@
 'use client';
 
+import { useState } from 'react';
 // @mui & Mantine & MapChart
 import Box from '@mui/material/Box';
-import { Flex } from '@mantine/core';
-import Grid from '@mui/material/Grid';
 import { alpha } from '@mui/material/styles';
 import Container from '@mui/material/Container';
+import { Flex, Grid } from '@mantine/core';
 // components
 import { useSettingsContext } from 'src/components/settings';
 import {
   ChartBar,
   ChartArea,
-  ChartUserActive,
-  ChartSession,
+  ChartTable,
   ChartEvent,
-  ChartMap
-} from 'src/components/analytics';
-import { DatePickerWithRange, PieCharts } from 'src/components/ui';
+  ChartSession,
+  ChartUserActive,
+  ChartMap,
+  PieCharts,
+  DatePickerWithRange,
+} from 'src/components/ui';
 
 // ----------------------------------------------------------------------
 
-
-
 export default function HomeView() {
   const settings = useSettingsContext();
+  const [value, setValue] = useState('');
 
   return (
     <Container maxWidth={settings.themeStretch ? false : 'xl'}>
@@ -40,38 +41,38 @@ export default function HomeView() {
           border: (theme) => `dashed 1px ${theme.palette.divider}`,
         }}
       >
-        <Flex direction="row">
-          <ChartArea />
-          <div className="mx-2" />
-          <ChartBar />
-        </Flex>
-        <div className="flex flex-col mt-5 gap-2">
-          <div className="flex gap-4">
-            <Grid container spacing={2}>
-              <Grid item xs={4}>
-                <ChartUserActive w={500} />
-              </Grid>
-              <Grid item xs={4}>
-                <ChartSession />
-              </Grid>
-              <Grid item xs={4}>
-                <ChartEvent />
-              </Grid>
-              <Grid item xs={12}>
-                <ChartMap />
-              </Grid>
-              <Grid item xs={4}>
-                <PieCharts />
-              </Grid>
-              <Grid item xs={4}>
-                <PieCharts />
-              </Grid>
-              <Grid item xs={4}>
-                <PieCharts />
-              </Grid>
-            </Grid>
-          </div>
-        </div>
+        <Grid>
+          <Grid.Col span={8}>
+            <ChartArea />
+          </Grid.Col>
+          <Grid.Col span={4}>
+            <ChartBar />
+          </Grid.Col>
+          <Grid.Col span={4}>
+            <ChartUserActive w="100%" />
+          </Grid.Col>
+          <Grid.Col span={4}>
+            <ChartSession />
+          </Grid.Col>
+          <Grid.Col span={4}>
+            <ChartEvent />
+          </Grid.Col>
+          <Grid.Col span={12}>
+            <ChartMap />
+          </Grid.Col>
+          <Grid.Col span={4}>
+            <PieCharts />
+          </Grid.Col>
+          <Grid.Col span={4}>
+            <PieCharts />
+          </Grid.Col>
+          <Grid.Col span={4}>
+            <PieCharts />
+          </Grid.Col>
+          <Grid.Col span={12}>
+            <ChartTable />
+          </Grid.Col>
+        </Grid>
       </Box>
     </Container>
   );

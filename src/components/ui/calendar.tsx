@@ -1,7 +1,8 @@
 'use client';
 
 import type { ComponentProps } from 'react';
-import { DayPicker } from 'react-day-picker';
+// @ts-ignore
+import { DayPicker } from 'react-day-picker/persian';
 
 import { cn } from 'src/lib/utils';
 import { buttonVariants } from 'src/components/ui/button';
@@ -18,10 +19,11 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
         month: '',
         caption: 'flex justify-center pt-1 relative items-center',
         caption_label: 'text-sm font-medium',
-        nav: ' flex items-center',
+        nav: 'flex items-center',
         button_previous:
           'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input shadow-sm hover:bg-accent hover:text-accent-foreground h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 absolute top-3 left-5',
-        button_next: 'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input shadow-sm hover:bg-accent hover:text-accent-foreground h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 absolute top-3 right-5',
+        button_next:
+          'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input shadow-sm hover:bg-accent hover:text-accent-foreground h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 absolute top-3 right-5',
         table: 'w-full border-collapse space-y-1',
         head_row: 'flex',
         head_cell: 'text-muted-foreground rounded-md font-normal text-[0.8rem]',

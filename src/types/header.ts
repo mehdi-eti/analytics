@@ -1,14 +1,14 @@
+import { UserType } from 'src/types/user';
+
 export type AppDataType = {
-  collectionId: string;
-  collectionName: string;
-  Business_size: string;
-  access: string[];
-  category: string;
-  created: string;
   id: string;
-  name: string;
-  updated: string;
-  url: string;
   user_id: string;
+  name: string;
+  category: string;
+  Business_size: string;
+  url: string;
+  access: UserType[];
   admin: string;
+  created: string;
+  updated: string;
 };

@@ -10,30 +10,22 @@ import { bgBlur } from 'src/theme/css';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
 // components
-import axios from 'axios';
 import { useAtom } from 'jotai';
 import atomStore from 'src/store';
 import Logo from 'src/components/logo';
-import { useLayoutEffect } from 'react';
 import { NativeSelect } from '@mantine/core';
 import SvgColor from 'src/components/svg-color';
 import { useSettingsContext } from 'src/components/settings';
 //
 import { StoreType } from 'src/types';
 import { HEADER, NAV } from '../config-layout';
-import {
-  Searchbar,
-  AccountPopover,
-  SettingsButton,
-  ContactsPopover,
-  NotificationsPopover,
-} from '../_common';
+import { AccountPopover, ContactsPopover } from '../_common';
 
 // ----------------------------------------------------------------------
 
 export default function Header({ onOpenNav }: { onOpenNav?: VoidFunction }) {
   const theme = useTheme();
-  const [store, setStore] = useAtom<StoreType>(atomStore);
+  const [store] = useAtom<StoreType>(atomStore);
 
   const settings = useSettingsContext();
 
@@ -46,24 +38,6 @@ export default function Header({ onOpenNav }: { onOpenNav?: VoidFunction }) {
   const offset = useOffSetTop(HEADER.H_DESKTOP);
 
   const offsetTop = offset && !isNavHorizontal;
-
-  // Render Apps
-  useLayoutEffect(() => {
-    const options = {
-      method: 'GET',
-      url: 'http://localhost:8090/api/collections/Apps/records',
-      headers: { 'content-type': 'application/json' },
-    };
-
-    (async () => {
-      try {
-        const { data } = await axios.request(options);
-        setStore((prev) => ({ ...prev, apps: data.items }));
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, [setStore]);
 
   const renderContent = (
     <>
@@ -89,7 +63,6 @@ export default function Header({ onOpenNav }: { onOpenNav?: VoidFunction }) {
           variant="filled"
           data={[...store.apps].map((a) => a?.name)}
         />
-        <NotificationsPopover />
         <ContactsPopover />
         <AccountPopover />
       </Stack>

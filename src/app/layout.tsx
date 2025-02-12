@@ -1,5 +1,5 @@
 // globals css
-import './globals.css'
+import './globals.css';
 // scroll bar
 import 'simplebar-react/dist/simplebar.min.css';
 
@@ -9,20 +9,23 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
 import '@mantine/charts/styles.css';
-import 'bootstrap/dist/css/bootstrap.css'
 // ----------------------------------------------------------------------
-import Script from "next/script";
+import Script from 'next/script';
 // theme
 import ThemeProvider from 'src/theme';
 import { iranYekan } from 'src/theme/typography';
-import { ColorSchemeScript, MantineProvider, mantineHtmlProps } from '@mantine/core';
+import {
+  ColorSchemeScript,
+  MantineProvider,
+  mantineHtmlProps,
+  DirectionProvider,
+} from '@mantine/core';
 // components
 import ProgressBar from 'src/components/progress-bar';
 import MotionLazy from 'src/components/animate/motion-lazy';
 import { SettingsProvider, SettingsDrawer } from 'src/components/settings';
 // auth
 import { AuthProvider, AuthConsumer } from 'src/auth/context/jwt';
-
 
 // ----------------------------------------------------------------------
 
@@ -63,36 +66,37 @@ type Props = {
 };
 
 export default function RootLayout({ children }: Props) {
-
   return (
-    <html lang="fr" className={iranYekan.className} {...mantineHtmlProps}>
+    <html lang="fr" dir="rtl" className={iranYekan.className} {...mantineHtmlProps}>
       <head>
-        <Script src="https://cdn.tailwindcss.com"/>
+        <Script src="https://cdn.tailwindcss.com" />
         <ColorSchemeScript />
       </head>
       <body>
-        <MantineProvider>
-          <AuthProvider>
-            <SettingsProvider
-              defaultSettings={{
-                themeMode: 'light', // 'light' | 'dark'
-                themeDirection: 'rtl', //  'rtl' | 'ltr'
-                themeContrast: 'default', // 'default' | 'bold'
-                themeLayout: 'horizontal', // 'vertical' | 'horizontal' | 'mini'
-                themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
-                themeStretch: false,
-              }}
-            >
-              <ThemeProvider>
-                <MotionLazy>
-                  <SettingsDrawer />
-                  <ProgressBar />
-                  <AuthConsumer>{children}</AuthConsumer>
-                </MotionLazy>
-              </ThemeProvider>
-            </SettingsProvider>
-          </AuthProvider>
-        </MantineProvider>
+        <DirectionProvider initialDirection="rtl">
+          <MantineProvider>
+            <AuthProvider>
+              <SettingsProvider
+                defaultSettings={{
+                  themeMode: 'light', // 'light' | 'dark'
+                  themeDirection: 'rtl', //  'rtl' | 'ltr'
+                  themeContrast: 'default', // 'default' | 'bold'
+                  themeLayout: 'horizontal', // 'vertical' | 'horizontal' | 'mini'
+                  themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
+                  themeStretch: false,
+                }}
+              >
+                <ThemeProvider>
+                  <MotionLazy>
+                    <SettingsDrawer />
+                    <ProgressBar />
+                    <AuthConsumer>{children}</AuthConsumer>
+                  </MotionLazy>
+                </ThemeProvider>
+              </SettingsProvider>
+            </AuthProvider>
+          </MantineProvider>
+        </DirectionProvider>
       </body>
     </html>
   );

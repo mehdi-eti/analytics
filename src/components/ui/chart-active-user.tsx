@@ -46,7 +46,13 @@ const Dot = ({ bg }: { bg: string }) => (
   />
 );
 
-export default function ChartUserActive({ h = 300, w = 300 }: { h?: number; w?: number }) {
+export default function ChartUserActive({
+  h = 300,
+  w = 300,
+}: {
+  h?: number | string;
+  w?: number | string;
+}) {
   return (
     <div className="flex flex-col bg-white shadow p-5 gap-3">
       <p className="font-bold">فعالیت کاربر در طول زمان</p>

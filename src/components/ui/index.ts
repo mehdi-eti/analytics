@@ -11,4 +11,23 @@ export {
   ChartLegendContent,
   ChartStyle,
 } from './chart';
+export {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from './table';
 export { PieCharts } from './pie-chart';
+export { default as ChartBar } from './chart-bar';
+export { default as ChartArea } from './chart-area';
+export { default as ChartUserActive } from './chart-active-user';
+export { default as ChartEvent } from './chart-event';
+export { default as ChartSession } from './chart-session';
+export { default as ChartMap } from './chart-map';
+export { default as ChartTable } from './chart-table';
+
+

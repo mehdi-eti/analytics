@@ -1,0 +1,170 @@
+{
+  "users": [
+    {
+      "id": "user_001",
+      "email": "saed@gmail.com",
+      "password_hash": "hashed_password_1",
+      "emailVisibility": true,
+      "verified": true,
+      "name": "Saeed",
+      "avatar": "",
+      "last_login_at": "2022-01-01 10:00:00.123Z",
+      "first_visit": "2022-01-01 10:00:00.123Z",
+      "last_visit": "2022-01-01 10:00:00.123Z",
+      "country": "Iran/Tehran",
+      "device": "desktop",
+      "browser": "Chrome",
+      "os": "Windows",
+      "online": true,
+      "phone": "09123483567",
+      "created": "2022-01-01 10:00:00.123Z",
+      "updated": "2022-01-01 10:00:00.123Z"
+    },
+    {
+      "id": "user_002",
+      "email": "rogin@gmail.com",
+      "password_hash": "hashed_password_1",
+      "emailVisibility": true,
+      "verified": true,
+      "name": "Rojin",
+      "avatar": "",
+      "last_login_at": "2022-01-01 10:00:00.123Z",
+      "first_visit": "2022-01-01 10:00:00.123Z",
+      "last_visit": "2022-01-01 10:00:00.123Z",
+      "country": "Iran/Tehran",
+      "device": "desktop",
+      "browser": "Chrome",
+      "os": "Windows",
+      "online": true,
+      "phone": "09123483567",
+      "created": "2022-01-01 10:00:00.123Z",
+      "updated": "2022-01-01 10:00:00.123Z"
+    },
+    {
+      "id": "user_003",
+      "email": "romina@gmail.com",
+      "password_hash": "hashed_password_1",
+      "emailVisibility": true,
+      "verified": true,
+      "name": "Romina",
+      "avatar": "",
+      "last_login_at": "2022-01-01 10:00:00.123Z",
+      "first_visit": "2022-01-01 10:00:00.123Z",
+      "last_visit": "2022-01-01 10:00:00.123Z",
+      "country": "Iran/Tehran",
+      "device": "desktop",
+      "browser": "Chrome",
+      "os": "Windows",
+      "online": true,
+      "phone": "09123483567",
+      "created": "2022-01-01 10:00:00.123Z",
+      "updated": "2022-01-01 10:00:00.123Z"
+    }
+  ],
+  "apps": [
+    {
+      "user_id": "user_001",
+      "name": "دیجی کالا",
+      "category": "خرید",
+      "Business_size": "بزرگ",
+      "url": "https://www.digikala.com/",
+      "access": [
+        {
+          "id": "user_002",
+          "email": "rogin@gmail.com",
+          "password_hash": "hashed_password_1",
+          "emailVisibility": true,
+          "verified": true,
+          "name": "Rojin",
+          "avatar": "",
+          "last_login_at": "2022-01-01 10:00:00.123Z",
+          "first_visit": "2022-01-01 10:00:00.123Z",
+          "last_visit": "2022-01-01 10:00:00.123Z",
+          "country": "Iran/Tehran",
+          "device": "desktop",
+          "browser": "Chrome",
+          "os": "Windows",
+          "online": true,
+          "phone": "09123483567",
+          "created": "2022-01-01 10:00:00.123Z",
+          "updated": "2022-01-01 10:00:00.123Z"
+        },
+        {
+          "id": "user_003",
+          "email": "romina@gmail.com",
+          "password_hash": "hashed_password_1",
+          "emailVisibility": true,
+          "verified": true,
+          "name": "Romina",
+          "avatar": "",
+          "last_login_at": "2022-01-01 10:00:00.123Z",
+          "first_visit": "2022-01-01 10:00:00.123Z",
+          "last_visit": "2022-01-01 10:00:00.123Z",
+          "country": "Iran/Tehran",
+          "device": "desktop",
+          "browser": "Chrome",
+          "os": "Windows",
+          "online": true,
+          "phone": "09123483567",
+          "created": "2022-01-01 10:00:00.123Z",
+          "updated": "2022-01-01 10:00:00.123Z"
+        }
+      ],
+      "admin": "user_001",
+      "created": "2022-01-01 10:00:00.123Z",
+      "updated": "2022-01-01 10:00:00.123Z"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "session_001",
+      "user_id": "user_001",
+      "session_start": "2025-02-05T12:30:00Z",
+      "session_end": "2025-02-05T13:00:00Z",
+      "ip_address": "192.168.1.1",
+      "device": "Laptop",
+      "browser": "Chrome"
+    }
+  ],
+  "events": [
+    {
+      "id": "event_001",
+      "session_id": "session_001",
+      "event_name": "page_view",
+      "event_time": "2025-02-05T12:35:00Z",
+      "event_data": {
+        "url": "/home",
+        "title": "Homepage"
+      }
+    }
+  ],
+  "traffic_sources": [
+    {
+      "id": "traffic_001",
+      "session_id": "session_001",
+      "referrer": "google.com",
+      "campaign": "Winter Sale",
+      "utm_source": "google",
+      "utm_medium": "cpc",
+      "utm_campaign": "winter_sale_2025"
+    }
+  ],
+  "page_views": [
+    {
+      "id": "page_001",
+      "session_id": "session_001",
+      "url": "/home",
+      "title": "Homepage",
+      "view_time": "2025-02-05T12:35:30Z"
+    }
+  ],
+  "conversions": [
+    {
+      "id": "conv_001",
+      "session_id": "session_001",
+      "conversion_type": "purchase",
+      "conversion_value": 49.99,
+      "conversion_time": "2025-02-05T12:50:00Z"
+    }
+  ]
+}

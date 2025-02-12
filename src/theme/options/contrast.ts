@@ -24,6 +24,13 @@ export function contrast(contrastBold: boolean, mode: 'light' | 'dark') {
           },
         },
       },
+      MuiDataGrid: {
+        styleOverrides: {
+          root: {
+            backgroundColor: 'red',
+          },
+        },
+      },
     }),
   };
 

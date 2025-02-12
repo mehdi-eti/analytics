@@ -10,7 +10,7 @@ export default function MapChart() {
     ['Germany', 50],
     ['United States', 50],
     ['Canada', 100],
-    ['IR', 700],
+    ['Iran', 700],
   ];
 
   return (
@@ -66,8 +66,7 @@ export default function MapChart() {
         chartType="GeoChart"
         className="bg-transparent"
         options={{
-          defaultColor: '#f5f5f5',
-          colorAxis: { colors: ['#00b5d5', '#0226ff'] },
+          colorAxis: { colors: ['#bfdbfe', '#1e40af'] },
         }}
         chartEvents={[
           {

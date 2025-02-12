@@ -5,4 +5,5 @@ export type StoreType = {
   apps: AppDataType[] | [];
   user: UserType;
   accessUser: UserType[];
+  active_app: string;
 };

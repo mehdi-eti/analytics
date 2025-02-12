@@ -6,13 +6,14 @@ import Box from '@mui/material/Box';
 import { AreaChart } from '@mantine/charts';
 import Container from '@mui/material/Container';
 
-import { AreaChartData } from 'src/_mock';
+import { AreaChartData } from '@/src/_mock';
 import PopOverItem from './pop-over';
-import { ChartAreaType } from './types';
 
 // ----------------------------------------------------------------------
 
-export default function ChartArea({ hasPopOver = true }: ChartAreaType) {
+export default function ChartArea({ hasPopOver = true }: {
+  hasPopOver?: boolean
+}) {
   const [label, setLabel] = useState('کاربر فعال');
 
   return (
@@ -27,16 +28,16 @@ export default function ChartArea({ hasPopOver = true }: ChartAreaType) {
           <strong>{label}</strong>
           <Box
             component="section"
-            sx={{ px: 1.5, py: 0.5, backgroundColor: 'var(--mantine-color-violet-6)' }}
+            sx={{ px: 1.5, py: 0.5, backgroundColor: "hsl(var(--chart-2))" }}
           />
         </div>
         <AreaChart
-          h={300}
+          h={380}
           gridAxis="xy"
           dataKey="day"
           curveType="bump"
           data={AreaChartData}
-          series={[{ name: 'تعداد', color: 'violet' }]}
+          series={[{ name: 'تعداد', color: "hsl(var(--chart-2))" }]}
         />
       </div>
     </Container>

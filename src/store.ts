@@ -3,6 +3,7 @@ import { StoreType } from 'src/types';
 
 const atomStore = atom(<StoreType>{
   apps: [],
+  active_app:"",
   user: {},
   accessUser: {},
 })
