@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 // @mui & Mantine
 import Box from '@mui/material/Box';
@@ -17,7 +15,7 @@ export default function ChartArea({ hasPopOver = true }: {
   const [label, setLabel] = useState('کاربر فعال');
 
   return (
-    <Container className="flex flex-col align-middle justify-around bg-white shadow-lg rounded-4" sx={{ padding: "1.25rem" }}>
+    <Container className="flex flex-col align-middle justify-around gap-7 bg-white shadow-lg rounded-4" sx={{ padding: "1.25rem" }}>
       <div className="flex gap-4">
         {['کاربر فعال', 'تعداد کلیک ها', 'نشست ها', 'بازدید ها'].map((i, index) => (
           <PopOverItem setLabel={setLabel} label={i} hasPopOver={hasPopOver} key={index} />
@@ -32,7 +30,7 @@ export default function ChartArea({ hasPopOver = true }: {
           />
         </div>
         <AreaChart
-          h={380}
+          h={350}
           gridAxis="xy"
           dataKey="day"
           curveType="bump"

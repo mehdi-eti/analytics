@@ -1,6 +1,7 @@
-'use client';
-
-import * as React from 'react';
+import type { ReactNode } from 'react';
+import { useMemo } from 'react';
+import { useAtom } from 'jotai';
+import { format } from 'date-fns-jalali';
 import { TrendingUp } from 'lucide-react';
 import { Label, Pie, PieChart } from 'recharts';
 
@@ -18,51 +19,39 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from 'src/components/ui/chart';
+import atomStore from 'src/store';
 
-const chartData = [
-  { browser: 'chrome', visitors: 275, fill: 'var(--color-chrome)' },
-  { browser: 'safari', visitors: 200, fill: 'var(--color-safari)' },
-  { browser: 'firefox', visitors: 287, fill: 'var(--color-firefox)' },
-  { browser: 'edge', visitors: 173, fill: 'var(--color-edge)' },
-  { browser: 'other', visitors: 190, fill: 'var(--color-other)' },
-];
+type ChartDataType = { browser: string; visitors: number; fill: string };
+type PieChartType = {
+  label: ReactNode;
+  chartConfig: ChartConfig;
+  chartData: ChartDataType[];
+};
 
-const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
-  chrome: {
-    label: "Chrome",
-    color: "hsl(var(--chart-1))",
-  },
-  safari: {
-    label: "Safari",
-    color: "hsl(var(--chart-2))",
-  },
-  firefox: {
-    label: "Firefox",
-    color: "hsl(var(--chart-3))",
-  },
-  edge: {
-    label: "Edge",
-    color: "hsl(var(--chart-4))",
-  },
-  other: {
-    label: "Other",
-    color: "hsl(var(--chart-5))",
-  },
-} satisfies ChartConfig
-
-export function PieCharts() {
-  const totalVisitors = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.visitors, 0);
-  }, []);
+export function PieCharts({ chartConfig, chartData, label }: PieChartType) {
+  const [{ date }] = useAtom(atomStore);
+  const totalVisitors = useMemo(
+    () => chartData.reduce((acc, curr) => acc + curr.visitors, 0),
+    [chartData]
+  );
 
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Pie Chart - Donut with Text</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>{label}</CardTitle>
+        <CardDescription>
+          {date?.from ? (
+            date.to ? (
+              <strong>
+                {format(date.from, 'yyyy MMMM d')} - {format(date.to, 'yyyy MMMM d')}
+              </strong>
+            ) : (
+              <strong>{format(date.from, 'yyyy MMMM d')}</strong>
+            )
+          ) : (
+            <span>Pick a date</span>
+          )}
+        </CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-[250px]">
@@ -76,9 +65,9 @@ export function PieCharts() {
               strokeWidth={5}
             >
               <Label
-                content={({ viewBox }) => {
-                  if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
-                    return (
+                content={({ viewBox }) => (
+                  <>
+                    {viewBox && 'cx' in viewBox && 'cy' in viewBox && (
                       <text
                         x={viewBox.cx}
                         y={viewBox.cy}
@@ -100,9 +89,9 @@ export function PieCharts() {
                           Visitors
                         </tspan>
                       </text>
-                    );
-                  }
-                }}
+                    )}
+                  </>
+                )}
               />
             </Pie>
           </PieChart>
@@ -113,7 +102,7 @@ export function PieCharts() {
           Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
         </div>
         <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+          Showing total visitors for the last 7 days
         </div>
       </CardFooter>
     </Card>

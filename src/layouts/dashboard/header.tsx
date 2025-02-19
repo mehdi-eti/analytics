@@ -13,13 +13,12 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import { useAtom } from 'jotai';
 import atomStore from 'src/store';
 import Logo from 'src/components/logo';
-import { NativeSelect } from '@mantine/core';
 import SvgColor from 'src/components/svg-color';
 import { useSettingsContext } from 'src/components/settings';
 //
 import { StoreType } from 'src/types';
 import { HEADER, NAV } from '../config-layout';
-import { AccountPopover, ContactsPopover } from '../_common';
+import { AccountPopover, ContactsPopover, AppsPopover } from '../_common';
 
 // ----------------------------------------------------------------------
 
@@ -57,12 +56,7 @@ export default function Header({ onOpenNav }: { onOpenNav?: VoidFunction }) {
         justifyContent="flex-end"
         spacing={{ xs: 0.5, sm: 1 }}
       >
-        <NativeSelect
-          size="xs"
-          radius="md"
-          variant="filled"
-          data={[...store.apps].map((a) => a?.name)}
-        />
+        <AppsPopover />
         <ContactsPopover />
         <AccountPopover />
       </Stack>

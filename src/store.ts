@@ -6,6 +6,7 @@ const atomStore = atom(<StoreType>{
   active_app:"",
   user: {},
   accessUser: {},
+  date: undefined,
 })
 
 export default atomStore;

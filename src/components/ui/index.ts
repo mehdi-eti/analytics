@@ -29,5 +29,6 @@ export { default as ChartEvent } from './chart-event';
 export { default as ChartSession } from './chart-session';
 export { default as ChartMap } from './chart-map';
 export { default as ChartTable } from './chart-table';
+export { default as ChartLoader } from './chart-loader';
 
 

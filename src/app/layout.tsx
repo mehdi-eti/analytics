@@ -10,6 +10,7 @@ import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
 import '@mantine/charts/styles.css';
 // ----------------------------------------------------------------------
+import type {ReactNode} from 'react'
 import Script from 'next/script';
 // theme
 import ThemeProvider from 'src/theme';
@@ -62,7 +63,7 @@ export const metadata = {
 };
 
 type Props = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export default function RootLayout({ children }: Props) {

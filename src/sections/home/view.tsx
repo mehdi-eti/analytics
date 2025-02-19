@@ -1,11 +1,15 @@
 'use client';
 
-import { useState } from 'react';
 // @mui & Mantine & MapChart
+import { lazy, Suspense } from 'react';
 import Box from '@mui/material/Box';
+import { Grid } from '@mantine/core';
 import { alpha } from '@mui/material/styles';
 import Container from '@mui/material/Container';
-import { Flex, Grid } from '@mantine/core';
+import { TfiAndroid } from 'react-icons/tfi';
+import { TiDeviceLaptop } from 'react-icons/ti';
+import { BsBrowserChrome } from 'react-icons/bs';
+
 // components
 import { useSettingsContext } from 'src/components/settings';
 import {
@@ -15,16 +19,18 @@ import {
   ChartEvent,
   ChartSession,
   ChartUserActive,
-  ChartMap,
   PieCharts,
   DatePickerWithRange,
+  ChartLoader,
 } from 'src/components/ui';
+import { osConfig, osData, browserData, browserConfig, deviceData, deviceConfig } from 'src/_mock';
 
+// ----------------------------------------------------------------------
+const ChartMap = lazy(() => import('src/components/ui/chart-map'));
 // ----------------------------------------------------------------------
 
 export default function HomeView() {
   const settings = useSettingsContext();
-  const [value, setValue] = useState('');
 
   return (
     <Container maxWidth={settings.themeStretch ? false : 'xl'}>
@@ -58,16 +64,45 @@ export default function HomeView() {
             <ChartEvent />
           </Grid.Col>
           <Grid.Col span={12}>
-            <ChartMap />
+            <Suspense fallback={<ChartLoader />}>
+              <ChartMap />
+            </Suspense>
           </Grid.Col>
           <Grid.Col span={4}>
-            <PieCharts />
+            <PieCharts
+              chartConfig={osConfig}
+              chartData={osData}
+              label={
+                <div className="flex gap-2 justify-center align-middle items-center">
+                  <TfiAndroid size={30} />
+                  <h1 className="text-xl font-bold">OS</h1>
+                </div>
+              }
+            />
           </Grid.Col>
           <Grid.Col span={4}>
-            <PieCharts />
+            <PieCharts
+              chartConfig={browserConfig}
+              chartData={browserData}
+              label={
+                <div className="flex gap-2 justify-center align-middle items-center">
+                  <BsBrowserChrome size={30} />
+                  <strong className="text-xl font-bold">Browser</strong>
+                </div>
+              }
+            />
           </Grid.Col>
           <Grid.Col span={4}>
-            <PieCharts />
+            <PieCharts
+              chartConfig={deviceConfig}
+              chartData={deviceData}
+              label={
+                <div className="flex gap-2 justify-center align-middle items-center">
+                  <TiDeviceLaptop size={30} />
+                  <strong className="text-xl font-bold">Device</strong>
+                </div>
+              }
+            />
           </Grid.Col>
           <Grid.Col span={12}>
             <ChartTable />

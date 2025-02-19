@@ -1,5 +1,3 @@
-'use client';
-
 import type { ComponentProps } from 'react';
 // @ts-ignore
 import { DayPicker } from 'react-day-picker/persian';

@@ -1,5 +1,3 @@
-'use client';
-
 import type { ReactNode, ComponentType, ComponentProps, CSSProperties } from 'react';
 import { createContext, useContext, forwardRef, useId, useMemo } from 'react';
 import * as RechartsPrimitive from 'recharts';

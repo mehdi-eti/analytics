@@ -1,5 +1,3 @@
-'use client';
-
 // @mui & Mantine
 import { ScrollArea, Select } from '@mantine/core';
 import { BarChart } from '@mantine/charts';
