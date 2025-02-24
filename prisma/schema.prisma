@@ -14,51 +14,51 @@ datasource db {
 }
 
 model User {
-  id                          String    @id @default(uuid())
+  id                          String      @id @default(uuid())
   sex                         String?
   name                        String?
   avatar                      String?
   zipCode                     String?
-  verified                    Boolean   @default(false)
+  verified                    Boolean     @default(false)
   password                    String
   displayName                 String
   // Email
-  email                       String   @unique
+  email                       String      @unique
   email_change                String?
-  emailVisibility             Boolean   @default(false)
-  emailVerified               Boolean   @default(false)
+  emailVisibility             Boolean     @default(false)
+  emailVerified               Boolean     @default(false)
   emailVerificationToken      String?
   emailVerificationSentAt     DateTime?
   email_change_sent_at        DateTime?
   email_change_token_new      String?
-  email_change_confirm_status Int?      @default(0)
-  email_change_token_current  String?   @default("")
+  email_change_confirm_status Int?        @default(0)
+  email_change_token_current  String?     @default("")
   email_confirmed_at          DateTime?
   // Token
   encrypted_password          String?
-  reauthentication_token      String?   @default("")
+  reauthentication_token      String?     @default("")
   reauthentication_sent_at    DateTime?
   recovery_token              String?
   recovery_sent_at            DateTime?
   confirmation_token          String?
   confirmation_sent_at        DateTime?
   // Roll
-  is_super_admin              Boolean   @default(false)
-  is_sso_user                 Boolean   @default(true)
-  is_anonymous                Boolean   @default(false)
+  is_super_admin              Boolean     @default(false)
+  is_sso_user                 Boolean     @default(true)
+  is_anonymous                Boolean     @default(false)
   // Phone
-  phone                       String   @unique
-  phone_change                String?   @default("")
-  phone_change_token          String?   @default("")
+  phone                       String      @unique
+  phone_change                String?     @default("")
+  phone_change_token          String?     @default("")
   phone_change_sent_at        DateTime?
   phone_confirmed_at          DateTime?
   verificationCode            String?
   verificationCodeSentAt      DateTime?
-  phoneVerified               Boolean   @default(false)
+  phoneVerified               Boolean     @default(false)
   // Agent
   browser                     String
   device                      String
-  online                      Boolean   @default(false)
+  online                      Boolean     @default(false)
   os                          String
   // App
   instance_id                 String?
@@ -70,12 +70,130 @@ model User {
   deleted_at                  DateTime?
   invited_at                  DateTime?
   last_visit                  DateTime?
-  created_at                  DateTime  @default(now())
-  updated_at                  DateTime  @updatedAt
+  created_at                  DateTime    @default(now())
+  updated_at                  DateTime    @updatedAt
   first_visit                 DateTime?
   confirmed_at                DateTime?
   last_login_at               DateTime?
   last_sign_in_at             DateTime?
+  Website                     Website[]
+  Retention                   Retention[]
 
   @@map("users") // Maps to the "users" table in the database
+}
+
+model Website {
+  website_id Int      @id @default(autoincrement())
+  user_id    String
+  domain     String   @unique
+  created_at DateTime @default(now())
+
+  sessions Session[]
+
+  // Foreign Key relation to User (assuming there's a User model)
+  User   User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  Goal   Goal[]
+  Cohort Cohort[]
+}
+
+model Session {
+  session_id   Int        @id @default(autoincrement())
+  website_id   Int
+  session_uuid String     @unique
+  start_time   DateTime
+  end_time     DateTime?
+  ip_address   String?
+  user_agent   String?
+  referrer     String?
+  country_code String?
+  device_type  DeviceType
+  os           String?
+  browser      String?
+
+  events Event[]
+
+  Website    Website      @relation(fields: [website_id], references: [website_id], onDelete: Cascade)
+  Pageview   Pageview[]
+  Conversion Conversion[]
+}
+
+model Event {
+  event_id   Int      @id @default(autoincrement())
+  session_id Int
+  event_type String
+  event_name String?
+  event_time DateTime
+  url_path   String?
+  element_id String?
+  metadata   Json?
+
+  Session Session @relation(fields: [session_id], references: [session_id], onDelete: Cascade)
+}
+
+// Enum for device types
+enum DeviceType {
+  desktop
+  mobile
+  tablet
+  other
+}
+
+model Pageview {
+  pageview_id Int      @id @default(autoincrement())
+  session_id  Int
+  url_path    String
+  view_time   DateTime
+
+  Session Session @relation(fields: [session_id], references: [session_id], onDelete: Cascade)
+}
+
+model Goal {
+  goal_id      Int      @id @default(autoincrement())
+  website_id   Int
+  goal_name    String
+  goal_type    GoalType
+  target_value String // Stores URL path, event name, or duration in seconds
+  created_at   DateTime @default(now())
+
+  Website     Website      @relation(fields: [website_id], references: [website_id], onDelete: Cascade)
+  conversions Conversion[]
+}
+
+model Conversion {
+  conversion_id   Int      @id @default(autoincrement())
+  goal_id         Int
+  session_id      Int
+  conversion_time DateTime
+
+  Goal    Goal    @relation(fields: [goal_id], references: [goal_id], onDelete: Cascade)
+  Session Session @relation(fields: [session_id], references: [session_id], onDelete: Cascade)
+}
+
+model Cohort {
+  cohort_id   Int       @id @default(autoincrement())
+  website_id  Int
+  cohort_name String
+  start_date  DateTime
+  end_date    DateTime?
+
+  Website    Website     @relation(fields: [website_id], references: [website_id], onDelete: Cascade)
+  retentions Retention[]
+}
+
+model Retention {
+  retention_id Int      @id @default(autoincrement())
+  cohort_id    Int
+  user_id      String
+  active_date  DateTime
+
+  Cohort Cohort @relation(fields: [cohort_id], references: [cohort_id], onDelete: Cascade)
+  User   User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+// Enums
+enum GoalType {
+  url
+  event
+  duration
+  pages_per_session
 }
