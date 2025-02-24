@@ -124,9 +124,9 @@ export function AuthProvider({ children }: Props) {
   }, [initialize]);
 
   // LOGIN
-  const login = useCallback(async (email: string, password: string) => {
+  const login = useCallback(async (phone: string, password: string) => {
     const data = {
-      email,
+      phone,
       password,
     };
 
@@ -146,26 +146,26 @@ export function AuthProvider({ children }: Props) {
 
   // REGISTER
   const register = useCallback(
-    async (email: string, password: string, firstName: string, lastName: string) => {
+    async (
+      email: string,
+      password: string,
+      firstName: string,
+      lastName: string,
+      phone: string,
+      sex: string
+    ) => {
       const data = {
         email,
         password,
         firstName,
         lastName,
+        phone,
+        sex,
       };
 
       const response = await axios.post(API_ENDPOINTS.auth.register, data);
 
-      const { accessToken, user } = response.data;
-
-      sessionStorage.setItem(STORAGE_KEY, accessToken);
-
-      dispatch({
-        type: Types.REGISTER,
-        payload: {
-          user,
-        },
-      });
+      return response.data;
     },
     []
   );

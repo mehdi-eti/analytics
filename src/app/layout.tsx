@@ -10,7 +10,8 @@ import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
 import '@mantine/charts/styles.css';
 // ----------------------------------------------------------------------
-import type {ReactNode} from 'react'
+import type { ReactNode } from 'react';
+
 import Script from 'next/script';
 // theme
 import ThemeProvider from 'src/theme';
@@ -27,6 +28,7 @@ import MotionLazy from 'src/components/animate/motion-lazy';
 import { SettingsProvider, SettingsDrawer } from 'src/components/settings';
 // auth
 import { AuthProvider, AuthConsumer } from 'src/auth/context/jwt';
+//
 
 // ----------------------------------------------------------------------
 

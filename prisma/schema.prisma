@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./data.db"
+}
+
+model User {
+  id                          String    @id @default(uuid())
+  sex                         String?
+  name                        String?
+  avatar                      String?
+  zipCode                     String?
+  verified                    Boolean   @default(false)
+  password                    String
+  displayName                 String
+  // Email
+  email                       String   @unique
+  email_change                String?
+  emailVisibility             Boolean   @default(false)
+  emailVerified               Boolean   @default(false)
+  emailVerificationToken      String?
+  emailVerificationSentAt     DateTime?
+  email_change_sent_at        DateTime?
+  email_change_token_new      String?
+  email_change_confirm_status Int?      @default(0)
+  email_change_token_current  String?   @default("")
+  email_confirmed_at          DateTime?
+  // Token
+  encrypted_password          String?
+  reauthentication_token      String?   @default("")
+  reauthentication_sent_at    DateTime?
+  recovery_token              String?
+  recovery_sent_at            DateTime?
+  confirmation_token          String?
+  confirmation_sent_at        DateTime?
+  // Roll
+  is_super_admin              Boolean   @default(false)
+  is_sso_user                 Boolean   @default(true)
+  is_anonymous                Boolean   @default(false)
+  // Phone
+  phone                       String   @unique
+  phone_change                String?   @default("")
+  phone_change_token          String?   @default("")
+  phone_change_sent_at        DateTime?
+  phone_confirmed_at          DateTime?
+  verificationCode            String?
+  verificationCodeSentAt      DateTime?
+  phoneVerified               Boolean   @default(false)
+  // Agent
+  browser                     String
+  device                      String
+  online                      Boolean   @default(false)
+  os                          String
+  // App
+  instance_id                 String?
+  aud                         String?
+  raw_app_meta_data           Json?
+  raw_user_meta_data          Json?
+  // Date
+  banned_until                DateTime?
+  deleted_at                  DateTime?
+  invited_at                  DateTime?
+  last_visit                  DateTime?
+  created_at                  DateTime  @default(now())
+  updated_at                  DateTime  @updatedAt
+  first_visit                 DateTime?
+  confirmed_at                DateTime?
+  last_login_at               DateTime?
+  last_sign_in_at             DateTime?
+
+  @@map("users") // Maps to the "users" table in the database
+}

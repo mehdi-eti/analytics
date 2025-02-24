@@ -41,15 +41,7 @@ export default function AuthClassicLayout({ children, image, title }: Props) {
 
   const upMd = useResponsive('up', 'md');
 
-  const renderLogo = (
-    <Logo
-      sx={{
-        zIndex: 9,
-        position: 'absolute',
-        m: { xs: 2, md: 5 },
-      }}
-    />
-  );
+  const renderLogo = <Logo sx={{ zIndex: 9, position: 'absolute', m: { xs: 2, md: 5 } }} />;
 
   const renderContent = (
     <Stack
@@ -57,8 +49,7 @@ export default function AuthClassicLayout({ children, image, title }: Props) {
         width: 1,
         mx: 'auto',
         maxWidth: 480,
-        px: { xs: 2, md: 8 },
-        py: { xs: 15, md: 30 },
+        py: { xs: 15, md: 15 },
       }}
     >
       {children}
@@ -75,7 +66,7 @@ export default function AuthClassicLayout({ children, image, title }: Props) {
         ...bgGradient({
           color: alpha(
             theme.palette.background.default,
-            theme.palette.mode === 'light' ? 0.88 : 0.94,
+            theme.palette.mode === 'light' ? 0.88 : 0.94
           ),
           imgUrl: '/assets/background/overlay_2.jpg',
         }),
@@ -116,16 +107,8 @@ export default function AuthClassicLayout({ children, image, title }: Props) {
   );
 
   return (
-    <Stack
-      component="main"
-      direction="row"
-      sx={{
-        minHeight: '100vh',
-      }}
-    >
+    <Stack component="main" direction="row">
       {renderLogo}
-
-      {upMd && renderSection}
 
       {renderContent}
     </Stack>

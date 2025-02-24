@@ -8,34 +8,34 @@ const axiosInstance = axios.create({ baseURL: HOST_API });
 
 axiosInstance.interceptors.response.use(
   (response) => response,
-  (error) => Promise.reject((error.response && error.response.data) || 'Something went wrong')
+  (error) => Promise.reject((error.response && error.response.data) || 'مشکلی پیش آمد')
 );
 
 export default axiosInstance;
 
 export const API_ENDPOINTS = {
-  chat: '/api/chat',
-  kanban: '/api/kanban',
   calendar: '/api/calendar',
   auth: {
     me: '/api/auth/me',
     login: '/api/auth/login',
     register: '/api/auth/register',
-  },
-  mail: {
-    list: '/api/mail/list',
-    details: '/api/mail/details',
-    labels: '/api/mail/labels',
-  },
-  post: {
-    list: '/api/post/list',
-    details: '/api/post/details',
-    latest: '/api/post/latest',
-    search: '/api/post/search',
-  },
-  product: {
-    list: '/api/product/list',
-    details: '/api/product/details',
-    search: '/api/product/search',
+    verifyCode: '/api/auth/verify-code',
   },
 };
+
+// Requests
+export function fetche(url: string, config?: object) {
+  return axiosInstance.get(url, config).then((res) => res.data);
+}
+
+export function sender(url: string, data: any, config?: object) {
+  return axiosInstance.post(url, data, config).then((res) => res.data);
+}
+
+export function updater(url: string, data: any, config?: object) {
+  return axiosInstance.put(url, data, config).then((res) => res.data);
+}
+
+export function deleter(url: string, config?: object) {
+  return axiosInstance.delete(url, config).then((res) => res.data);
+}

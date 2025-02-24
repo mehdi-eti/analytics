@@ -1,34 +1,35 @@
 import type { NextRequest } from 'next/server';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+import bcrypt from 'bcrypt';
 import { sign } from 'src/utils/jwt';
 import { STATUS, response } from 'src/utils/response';
 
-import { _users, JWT_SECRET, JWT_EXPIRES_IN } from 'src/_mock/_auth';
+import prisma from 'src/lib/prisma';
+import { JWT_SECRET, JWT_EXPIRES_IN } from 'src/config-global';
 
 // ----------------------------------------------------------------------
 
-export const runtime = 'edge';
-
-/**
- * This API is used for demo purpose only
- * You should use a real database
- * You should hash the password before saving to database
- * You should not save the password in the database
- * You should not expose the JWT_SECRET in the client side
- */
-
 export async function POST(req: NextRequest) {
   try {
-    const { email, password } = await req.json();
+    // ------------------------- BODY -------------------------
+    const { phone, password } = await req.json();
 
-    const user = _users.find((_user) => _user.email === email);
-
-    if (!user) {
-      return response('There is no user corresponding to the email address.', STATUS.UNAUTHORIZED);
+    if (!phone || !password) {
+      return response({ message: 'موبایل و رمز عبور لازم است' }, STATUS.BAD_REQUEST);
     }
 
-    if (user?.password !== password) {
-      return response('Wrong password', STATUS.UNAUTHORIZED);
+    // Find the user by phone
+    const user = await prisma.user.findUnique({
+      where: { phone },
+    });
+
+    if (!user) return response('موبایل یا رمز عبور نامعتبر است', STATUS.BAD_REQUEST);
+
+    // Compare the provided password with the hashed password in the database
+    const passwordMatch = bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return response({ message: 'Invalid email or password' }, STATUS.BAD_REQUEST);
     }
 
     const accessToken = await sign({ userId: user?.id }, JWT_SECRET, {
@@ -41,10 +42,3 @@ export async function POST(req: NextRequest) {
     return response('Internal server error', STATUS.ERROR);
   }
 }
-
-/**
- * Next updated version changes:
- * return response( { message: 'There is no user corresponding to the email address.' }, status.unauthorized );
- * return response({ message: 'Wrong password' }, status.unauthorized);
- * return response({ message: 'Internal server error' }, status.error);
- */
