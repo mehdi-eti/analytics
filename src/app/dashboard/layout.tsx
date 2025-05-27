@@ -13,33 +13,33 @@ import atomStore from 'src/store';
 // ----------------------------------------------------------------------
 
 type Props = {
-  children: React.ReactNode;
+    children: React.ReactNode;
 };
 
 export default function Layout({ children }: Props) {
-  const [, setStore] = useAtom<StoreType>(atomStore);
+    const [, setStore] = useAtom<StoreType>(atomStore);
 
-// Render Apps
-  useLayoutEffect(() => {
-    const options = {
-      method: 'GET',
-      url: 'http://localhost:3000/apps?user_id=user_001',
-      headers: { 'content-type': 'application/json' },
-    };
+    // Render Apps
+    useLayoutEffect(() => {
+        const options = {
+            method: 'GET',
+            url: 'http://localhost:3000/apps?user_id=user_001',
+            headers: { 'content-type': 'application/json' },
+        };
 
-    (async () => {
-      try {
-        const { data } = await axios.request(options);
-        setStore((prev) => ({ ...prev, apps: data, active_app: data[0].name }));
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, [setStore]);
+        (async () => {
+            try {
+                const { data } = await axios.request(options);
+                setStore((prev) => ({ ...prev, apps: data, active_app: data[0].name }));
+            } catch (error) {
+                console.error(error);
+            }
+        })();
+    }, [setStore]);
 
-  return (
-    <AuthGuard>
-      <DashboardLayout>{children}</DashboardLayout>
-    </AuthGuard>
-  );
+    return (
+        <AuthGuard>
+            <DashboardLayout>{children}</DashboardLayout>
+        </AuthGuard>
+    );
 }

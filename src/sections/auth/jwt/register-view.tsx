@@ -40,7 +40,6 @@ export default function RegisterView() {
   const router = useRouter();
   const { register } = useAuthContext();
   const [errorMsg, setErrorMsg] = useState('');
-  const [sex, setSex] = useState('male');
   const password = useBoolean();
   const confirm_password = useBoolean();
 
@@ -65,7 +64,6 @@ export default function RegisterView() {
     email: 'etezadi_mehdi@yahoo.com',
     phone: '09359971938',
     password: 'Mehdi123456**',
-    sex: 'male',
   };
 
   const methods = useForm<FormValuesProps>({
@@ -88,7 +86,6 @@ export default function RegisterView() {
           data.firstName,
           data.lastName,
           data.phone,
-          data.sex
         );
         router.push(`/auth/jwt/confirm-phone?phone=${data.phone}`);
       } catch (error) {
@@ -171,20 +168,6 @@ export default function RegisterView() {
             ),
           }}
         />
-
-        <div className="flex jusity-center items-center gap-5">
-          <span>جنسیت</span>
-          <RadioGroup value={sex} onValueChange={(e) => setSex(e)}>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="male" id="male" />
-              <Label htmlFor="male">مرد</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="female" id="female" />
-              <Label htmlFor="female">زن</Label>
-            </div>
-          </RadioGroup>
-        </div>
 
         <LoadingButton
           fullWidth

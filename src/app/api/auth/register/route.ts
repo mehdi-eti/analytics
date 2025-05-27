@@ -5,7 +5,6 @@ import prisma from 'src/lib/prisma';
 import UAParser from 'ua-parser-js';
 
 import { STATUS, response } from 'src/utils/response';
-import { sendOtpSms } from 'src/utils/ghasedak';
 import bcrypt from 'bcrypt';
 
 // ----------------------------------------------------------------------
@@ -13,7 +12,7 @@ import bcrypt from 'bcrypt';
 export async function POST(req: NextRequest) {
   try {
     // ------------------------- BODY -------------------------
-    const { email, password, firstName, lastName, phone, sex } = await req.json();
+    const { email, password, firstName, lastName, phone } = await req.json();
 
     // ------------------------- AGENT -------------------------
     const userAgent = req.headers.get('user-agent');
@@ -60,7 +59,6 @@ export async function POST(req: NextRequest) {
       // Create a new user
       await prisma.user.create({
         data: {
-          sex,
           email,
           phone,
           verified: false,

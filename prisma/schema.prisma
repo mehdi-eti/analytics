@@ -130,14 +130,6 @@ model Event {
   Session Session @relation(fields: [session_id], references: [session_id], onDelete: Cascade)
 }
 
-// Enum for device types
-enum DeviceType {
-  desktop
-  mobile
-  tablet
-  other
-}
-
 model Pageview {
   pageview_id Int      @id @default(autoincrement())
   session_id  Int
@@ -190,10 +182,17 @@ model Retention {
   User   User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
-// Enums
+// --------------------------------- Enums ---------------------------------
 enum GoalType {
   url
   event
   duration
   pages_per_session
+}
+
+enum DeviceType {
+  desktop
+  mobile
+  tablet
+  other
 }

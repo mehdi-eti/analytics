@@ -152,7 +152,6 @@ export function AuthProvider({ children }: Props) {
       firstName: string,
       lastName: string,
       phone: string,
-      sex: string
     ) => {
       const data = {
         email,
@@ -160,7 +159,6 @@ export function AuthProvider({ children }: Props) {
         firstName,
         lastName,
         phone,
-        sex,
       };
 
       const response = await axios.post(API_ENDPOINTS.auth.register, data);

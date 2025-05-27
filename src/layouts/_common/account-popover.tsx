@@ -90,18 +90,24 @@ export default function AccountPopover() {
         />
       </IconButton>
 
-      <CustomPopover open={popover.open} onClose={popover.onClose} sx={{ width: 200, p: 0 }}>
-        <Box sx={{ p: 2, pb: 1.5 }}>
-          <Typography variant="subtitle2" noWrap>
-            {user?.name}
-          </Typography>
+      <CustomPopover open={popover.open} onClose={popover.onClose} sx={{ width: 300, p: 0 }}>
+        <div className="flex gap-2 p-4">
+          <Avatar
+            alt={user?.name}
+            sx={{
+              border: (theme) => `solid 2px ${theme.palette.background.default}`,
+            }}
+          />
+          <Box>
+            <Typography variant="subtitle2" noWrap>
+              {user?.displayName}
+            </Typography>
 
-          <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {user?.email}
-          </Typography>
-        </Box>
-
-        <Divider sx={{ borderStyle: 'dashed' }} />
+            <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
+              {user?.email}
+            </Typography>
+          </Box>
+        </div>
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 

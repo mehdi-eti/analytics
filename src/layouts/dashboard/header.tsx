@@ -1,8 +1,9 @@
 // @mui
-import { useTheme } from '@mui/material/styles';
+import { Select } from '@mantine/core';
 import Stack from '@mui/material/Stack';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
+import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 // theme
 import { bgBlur } from 'src/theme/css';
@@ -18,7 +19,7 @@ import { useSettingsContext } from 'src/components/settings';
 //
 import { StoreType } from 'src/types';
 import { HEADER, NAV } from '../config-layout';
-import { AccountPopover, ContactsPopover, AppsPopover } from '../_common';
+import { AccountPopover, ContactsPopover } from '../_common';
 
 // ----------------------------------------------------------------------
 
@@ -56,7 +57,7 @@ export default function Header({ onOpenNav }: { onOpenNav?: VoidFunction }) {
         justifyContent="flex-end"
         spacing={{ xs: 0.5, sm: 1 }}
       >
-        <AppsPopover />
+        <Select allowDeselect defaultValue="React" data={['React', 'Angular', 'Vue', 'Svelte']} />
         <ContactsPopover />
         <AccountPopover />
       </Stack>
