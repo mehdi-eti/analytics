@@ -1,7 +1,7 @@
 # 📊 Analytics – Privacy-Friendly Web Analytics with Next.js
 
 <div align="center">
-  <img src="https://fascinating-haupia-f4b311.netlify.app/images/analytics.jpeg" alt="Analytics Dashboard" width="800" />
+  <img src="https://fascinating-haupia-f4b311.netlify.app/images/analytics.jpeg" alt="Analytics Dashboard" width="400" />
 </div>
 
 A modern and privacy-friendly web analytics dashboard — like Google Analytics, but open-source and built with **Next.js**. Track visitors, sessions, active users, top devices, locations, and more, with a clean and responsive UI.
